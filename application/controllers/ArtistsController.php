@@ -28,7 +28,7 @@ class ArtistsController extends Zend_Controller_Action
     }
     
     /**
-     * Display info on a specific artist
+     * Displays info on a specific artist
      */
     public function showAction()
     {

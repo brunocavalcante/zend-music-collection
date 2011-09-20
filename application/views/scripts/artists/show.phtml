@@ -2,13 +2,17 @@
 <h3>Albums</h3>
 <?php if (count($this->albums) > 0): ?>
 <ul>
-    <?php foreach ($this->albums as $album): ?>
-    <li><?php echo $album->name ?></li>
-    <?php endforeach ?>
+  <?php foreach ($this->albums as $album): ?>
+  <li>
+    <a href="<?php echo $this->url(array('controller' => 'albums', 'action' => 'show', 'id' => $album->id)) ?>">
+      <?php echo $album->name ?>
+    </a>
+  </li>
+  <?php endforeach ?>
 </ul>
 <?php else: ?>
 <p>No album on the database for this artist.</p>
 <?php endif ?>
 
 <p><a href="<?php echo $this->url(array('action' => 'edit')) ?>">Edit</a></p>
-<p><a href="<?php echo $this->url(array('controller' => 'artists'), null, true) ?>">Back</a></p>
+<p><a href="<?php echo $this->url(array('controller' => 'artists'), null, true) ?>">List of Artists</a></p>

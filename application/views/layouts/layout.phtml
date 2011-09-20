@@ -1,7 +1,7 @@
 <?php echo $this->doctype() ?>
-<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+<html>
 <head>
-    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+    <meta charset="UTF-8" />
     
     <!-- Page Title -->
     <?php echo $this->headTitle() ?>
@@ -10,17 +10,24 @@
     <?php echo $this->headLink() ?>
 </head>
 <body>
-    <h1>Music Collection</h1>
+    <header>
+        <h1>Music Collection</h1>
+    </header>
 
-    <?php if (isset($this->messages) && count($this->messages) > 0): foreach ($this->messages as $message): ?>
-    <!-- Application Messages -->
-    <p><?php echo $message ?></p> 
-    <?php endforeach; endif; ?>
+    <section>
+        <?php if (isset($this->messages) && count($this->messages) > 0): foreach ($this->messages as $message): ?>
+        <!-- Application Messages -->
+        <p><?php echo $message ?></p> 
+        <?php endforeach; endif; ?>
+            
+        <!-- View Content -->
         
-    <!-- View Content -->
-    <?php echo $this->layout()->content ?>
+        <?php echo $this->layout()->content ?>
+    </section>
     
-    <p>This could be the footer! :)</p>
+    <footer>
+        <p>This could be the footer! :)</p>
+    </footer>
     
     <!-- Javascripts defined on the Bootstrap -->
     <?php echo $this->headScript() ?>

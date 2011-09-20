@@ -1,0 +1,12 @@
+<h2><?php echo $this->album->name ?></h2>
+<dl>
+  <dt>Artist:</dt>
+  <dd>
+    <a href="<?php echo $this->url(array('controller' => 'artists', 'action' => 'show', 'id' => $this->artist->id)) ?>">
+      <?php echo $this->artist->name ?>
+    </a>
+  </dd>
+</dl>
+
+<p><a href="<?php echo $this->url(array('action' => 'edit')) ?>">Edit</a></p>
+<p><a href="<?php echo $this->url(array('controller' => 'albums'), null, true) ?>">List of Albums</a></p>
