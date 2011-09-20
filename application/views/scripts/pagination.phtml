@@ -1,0 +1,24 @@
+<?php if ($this->pageCount): ?>
+<span><?php echo $this->firstItemNumber ?> - <?php echo $this->lastItemNumber ?> de <?php echo $this->totalItemCount ?></span> 
+<!-- First page link -->
+<?php if (isset($this->previous)): ?>
+  <a href="<?php echo $this->url(array('page' => $this->first)); ?>">Primeira</a> |
+<?php endif ?>
+ 
+<!-- Previous page link -->
+<?php if (isset($this->previous)): ?>
+  <a href="<?php echo $this->url(array('page' => $this->previous)); ?>">&lt; Anterior</a> |
+<?php endif ?>
+ 
+<!-- Next page link -->
+<?php if (isset($this->next)): ?>
+  <a href="<?php echo $this->url(array('page' => $this->next)); ?>">Próxima &gt;</a> |
+<?php endif ?>
+ 
+<!-- Last page link -->
+<?php if (isset($this->next)): ?>
+  <a href="<?php echo $this->url(array('page' => $this->last)); ?>">
+    Última
+  </a>
+<?php endif ?>
+<?php endif ?>

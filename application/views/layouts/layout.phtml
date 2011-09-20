@@ -1,0 +1,28 @@
+<?php echo $this->doctype() ?>
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="pt-br" lang="pt-br">
+<head>
+    <meta http-equiv="Content-Type" content="text/xhtml; charset=UTF-8" />
+    
+    <!-- Page Title -->
+    <?php echo $this->headTitle() ?>
+    
+    <!-- CSS & other <link> elements defined on the Bootstrap -->
+    <?php echo $this->headLink() ?>
+</head>
+<body>
+    <h1>Music Collection</h1>
+
+    <?php if (isset($this->messages) && count($this->messages) > 0): foreach ($this->messages as $message): ?>
+    <!-- Application Messages -->
+    <p><?php echo $message ?></p> 
+    <?php endforeach; endif; ?>
+        
+    <!-- View Content -->
+    <?php echo $this->layout()->content ?>
+    
+    <p>This could be the footer! :)</p>
+    
+    <!-- Javascripts defined on the Bootstrap -->
+    <?php echo $this->headScript() ?>
+</body>
+</html>

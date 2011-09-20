@@ -1,0 +1,35 @@
+<h2>Artists</h2>
+
+<?php if ($this->paginator): ?>
+<table summary="Artists">
+    <thead>
+        <tr>
+            <th>Name</th>
+        </tr>
+    </thead>
+    <tfoot>
+        <tr>
+            <td>
+                <?php echo $this->paginationControl($this->paginator, 'Sliding', 'pagination.phtml') ?>
+            </td>
+        </tr>
+    </tfoot>
+    <tbody>
+        <?php if ($this->paginator->getTotalItemCount() == 0): ?>
+        <tr>
+            <td>No artist found.</td>
+        </tr>
+        <?php else: foreach ($this->paginator as $artist): ?>
+        <tr>
+            <td>
+                <a href="<?php echo $this->url(array('action' => 'show', 'id' => $artist->id)) ?>">
+                    <?php echo $artist->name ?>
+                </a>
+            </td>
+        </tr>
+        <?php endforeach; endif ?>
+    </tbody>
+</table>
+<?php endif ?>
+
+<p><a href="<?php echo $this->url(array('action' => 'new')) ?>">New Artist</a></p>
