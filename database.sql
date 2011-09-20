@@ -20,6 +20,6 @@ ALTER TABLE ONLY albums
     ADD CONSTRAINT albums_artist_id_fkey FOREIGN KEY (artist_id) REFERENCES artists(id);
 
 
-INSERT INTO albums (id, name, artist_id) VALUES (1, 'Please Please Me', 1);
-
 INSERT INTO artists (id, name) VALUES (1, 'The Beatles');
+
+INSERT INTO albums (id, name, artist_id) VALUES (1, 'Please Please Me', 1);
