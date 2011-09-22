@@ -19,6 +19,14 @@
         <!-- Application Messages -->
         <p><?php echo $message ?></p> 
         <?php endforeach; endif; ?>
+        
+        <nav>
+            <?php echo $this->navigation()->menu()->setUlClass('dropdown dropdown-horizontal menu_princ'); ?>
+        </nav>
+        
+        <p id="breadcrumbs">
+            <?php echo $this->navigation()->breadcrumbs()->setRenderInvisible(true)->setSeparator(" &raquo; ") ?>
+        </p>
             
         <!-- View Content -->
         

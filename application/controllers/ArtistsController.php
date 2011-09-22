@@ -17,6 +17,9 @@ class ArtistsController extends Zend_Controller_Action
         //instantiates a Zend_Db_Table_Select object (by default, will return all rows from the table)
         $select = $this->_getModel()->select();
       
+        //Order by name
+        $select->order('name');
+      
         //setting up the Zend_Paginator with the select object
         $paginator = new Zend_Paginator(new Zend_Paginator_Adapter_DbTableSelect($select));
         

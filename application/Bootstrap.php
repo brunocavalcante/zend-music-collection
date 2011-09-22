@@ -23,7 +23,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      * 
      * @return Zend_View
      */
-    protected function _getView()
+    private function _getView()
     {
         $this->bootstrap('view');
         return $this->getResource('view');
@@ -45,7 +45,7 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      * 
      * @return string
      */
-    protected function _getBaseUrl()
+    private function _getBaseUrl()
     {
         $baseUrl = Zend_Controller_Front::getInstance()->getBaseUrl(); 
         if (!$baseUrl) { 
@@ -62,5 +62,79 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
     {
         $view = $this->_getView();
         $view->doctype(Zend_View_Helper_Doctype::HTML5);
+    }
+    
+    protected function _initNavigation()
+    {
+        $this->_getView()->navigation($this->_getNavigation());
+    }
+    
+    /**
+     * Returns the Zend_Navigation object that describes the sitemap
+     * 
+     * With the Zend_Navigation object, we can now use the navigation() view helpers, such as menu and breadcrumbs
+     * 
+     * @return Zend_Navigation
+     */
+    private function _getNavigation()
+    {
+        $container = new Zend_Navigation(array(
+            array(
+                'label' => 'Artists',
+                'controller' => 'artists',
+                'action' => 'index', 
+                'pages' => array(
+                    array(
+                        'label' => 'Details',
+                        'controller' => 'artists', 
+                        'action' => 'show', 
+                        'visible' => false, 
+                        'resetParams' => false, 
+                        'pages' => array(
+                            array(
+                                'label' => 'Edit',
+                                'controller' => 'artists', 
+                                'action' => 'edit', 
+                            )
+                        )
+                    ), 
+                    array(
+                        'label' => 'New',
+                        'controller' => 'artists', 
+                        'action' => 'new', 
+                        'visible' => false
+                    )
+                )
+            ), 
+            array(
+                'label' => 'Albums',
+                'controller' => 'albums',
+                'action' => 'index', 
+                'pages' => array(
+                    array(
+                        'label' => 'Details',
+                        'controller' => 'albums', 
+                        'action' => 'show', 
+                        'visible' => false, 
+                        'resetParams' => false, 
+                        'pages' => array(
+                            array(
+                                'label' => 'Edit',
+                                'controller' => 'albums', 
+                                'action' => 'edit', 
+                            )
+                        )
+                    ), 
+                    array(
+                        'label' => 'New',
+                        'controller' => 'albums', 
+                        'action' => 'new', 
+                        'visible' => false
+                    )
+                )
+            )
+        ));
+        
+        return $container;
     }
 }
