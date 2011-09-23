@@ -1,4 +1,13 @@
 <?php
+/**
+ * Zend_Form for the Artists
+ *
+ * @author Bruno Cavalcante <brunofcavalcante@gmail.com>
+ * @package zend-music-collection
+ * @since 2011-09-20
+ * @license http://opensource.org/licenses/gpl-license.php GNU Public License
+ * @see Zend_Form
+ */
 class Form_Artist extends Zend_Form
 {
     public function init()

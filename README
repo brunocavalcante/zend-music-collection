@@ -1,0 +1,16 @@
+This project aims to be a reference for Zend Framework beginners seeking something closer to a "real world" example of the framework's use. It is not advised to use this app for any purpose other than to study it, there are tons of other apps way better suited to hold your music collection.
+
+Zend Music Collection is a minimalistic web app that tries to be a database of your very own music collection. It manages the Artists and the Albums in a very simple way.
+
+This application uses the following Zend Framework libraries:
+- Zend_Navigation (menu & breadcrumbs)
+- Zend_Layout
+- Zend_Paginator
+- Zend_Form
+- Zend_Controller_Action_Helper_FlashMessenger
+- Zend_Db_Table
+- Zend_Auth
+
+It also comes with a SQL with the database's structure.
+
+I tried my best to comment each unique code instruction, and I sincerely hope this project helps you on your learning process of Zend Framework. :)
