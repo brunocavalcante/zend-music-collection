@@ -1,4 +1,68 @@
 body {
   font-size: 100%;
   font-family: sans-serif;
+  margin: 0;
+}
+
+header, nav, section, footer {
+  padding: 2em;
+}
+
+header {
+  background: #333333;
+  color: white;
+  text-shadow: 1px 1px 1px #000000;
+  border-bottom: 1px dotted #333333;
+}
+
+header h1 {
+  margin: 0;
+}
+
+nav {
+  background: #444444;
+  padding: 1em 2em;
+}
+
+nav ul {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+}
+
+nav li {
+  display: inline;
+}
+
+nav a {
+  color: white;
+  margin-right: 2em;
+}
+
+section {
+  padding-top: 1em;
+}
+
+footer {
+  color: #999999;
+  padding: 1em 2em;
+  border-top: 1px dotted #CCCCCC;
+}
+
+table {
+  border-spacing: 0;
+  width: 100%;
+}
+
+table th {
+  border-bottom: 1px solid #666666;
+  text-align: left;
+}
+
+table td, table th {
+  padding: 1em 1.5em;
+}
+
+table tbody tr:nth-child(even) {
+  background: #F9F9F9;
 }

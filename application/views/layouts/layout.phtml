@@ -11,18 +11,18 @@
 </head>
 <body>
     <header>
-        <h1>Music Collection</h1>
+        <h1>Zend Music Collection</h1>
     </header>
+
+    <nav>
+        <?php echo $this->navigation()->menu()->setUlClass('dropdown dropdown-horizontal menu_princ'); ?>
+    </nav>
 
     <section>
         <?php if (isset($this->messages) && count($this->messages) > 0): foreach ($this->messages as $message): ?>
         <!-- Application Messages -->
         <p><?php echo $message ?></p> 
         <?php endforeach; endif; ?>
-        
-        <nav>
-            <?php echo $this->navigation()->menu()->setUlClass('dropdown dropdown-horizontal menu_princ'); ?>
-        </nav>
         
         <p id="breadcrumbs">
             <?php echo $this->navigation()->breadcrumbs()->setRenderInvisible(true)->setSeparator(" &raquo; ") ?>
@@ -34,7 +34,7 @@
     </section>
     
     <footer>
-        <p>This could be the footer! :)</p>
+        This could be the footer! :)
     </footer>
     
     <!-- Javascripts defined on the Bootstrap -->
