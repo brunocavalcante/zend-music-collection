@@ -1,7 +1,18 @@
 body {
   font-size: 100%;
-  font-family: sans-serif;
+  font-family: Helvetica, sans-serif;
   margin: 0;
+  color: #333333;
+}
+
+a, a:active, a:hover, a:visited {
+  color: #000000;
+  text-decoration: none;
+  border-bottom: 1px dotted #333333;
+}
+
+a:hover {
+  border-bottom: none;
 }
 
 header, nav, section, footer {
@@ -34,9 +45,10 @@ nav li {
   display: inline;
 }
 
-nav a {
+nav a, nav a:visited {
   color: white;
   margin-right: 2em;
+  border: none;
 }
 
 section {
@@ -55,7 +67,9 @@ table {
 }
 
 table th {
-  border-bottom: 1px solid #666666;
+  font-size: 0.8em;
+  text-transform: uppercase;
+  border-bottom: 1px solid #F0F0F0;
   text-align: left;
 }
 
@@ -63,6 +77,21 @@ table td, table th {
   padding: 1em 1.5em;
 }
 
-table tbody tr:nth-child(even) {
+table tbody td {
+  border-bottom: 1px solid #F6F6F6;
+}
+
+table tbody tr:nth-child(odd) {
   background: #F9F9F9;
+}
+
+dt {
+  display: block;
+  font-weight: bold;
+  margin-top: 1em;
+}
+
+dd {
+  display: block;
+  margin-left: 0;
 }

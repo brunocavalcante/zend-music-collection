@@ -1,43 +1,43 @@
 <?php echo $this->doctype() ?>
 <html>
 <head>
-    <meta charset="UTF-8" />
+  <meta charset="UTF-8" />
     
-    <!-- Page Title -->
-    <?php echo $this->headTitle() ?>
+  <!-- Page Title -->
+  <?php echo $this->headTitle() ?>
     
-    <!-- CSS & other <link> elements defined on the Bootstrap -->
-    <?php echo $this->headLink() ?>
+  <!-- CSS & other <link> elements defined on the Bootstrap -->
+  <?php echo $this->headLink() ?>
 </head>
 <body>
-    <header>
-        <h1>Zend Music Collection</h1>
-    </header>
+  <header>
+    <h1>Zend Music Collection</h1>
+  </header>
 
-    <nav>
-        <?php echo $this->navigation()->menu()->setUlClass('dropdown dropdown-horizontal menu_princ'); ?>
-    </nav>
+  <nav>
+    <?php echo $this->navigation()->menu()->setUlClass('dropdown dropdown-horizontal menu_princ'); ?>
+  </nav>
 
-    <section>
-        <?php if (isset($this->messages) && count($this->messages) > 0): foreach ($this->messages as $message): ?>
-        <!-- Application Messages -->
-        <p><?php echo $message ?></p> 
-        <?php endforeach; endif; ?>
-        
-        <p id="breadcrumbs">
-            <?php echo $this->navigation()->breadcrumbs()->setRenderInvisible(true)->setSeparator(" &raquo; ") ?>
-        </p>
-            
-        <!-- View Content -->
-        
-        <?php echo $this->layout()->content ?>
-    </section>
+  <section>
+    <p id="breadcrumbs">
+        <?php echo $this->navigation()->breadcrumbs()->setRenderInvisible(true)->setSeparator(" &raquo; ") ?>
+    </p>
     
-    <footer>
-        This could be the footer! :)
-    </footer>
+    <?php if (isset($this->messages) && count($this->messages) > 0): foreach ($this->messages as $message): ?>
+    <!-- Application Messages -->
+    <p><?php echo $message ?></p> 
+    <?php endforeach; endif; ?>
+      
+    <!-- View Content -->
+      
+    <?php echo $this->layout()->content ?>
+  </section>
+  
+  <footer>
+    This could be the footer! :)
+  </footer>
     
-    <!-- Javascripts defined on the Bootstrap -->
-    <?php echo $this->headScript() ?>
+  <!-- Javascripts defined on the Bootstrap -->
+  <?php echo $this->headScript() ?>
 </body>
 </html>
