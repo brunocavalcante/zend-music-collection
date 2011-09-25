@@ -6,6 +6,9 @@
       <?php echo $this->artist->name ?>
     </a>
   </dd>
+  
+  <dt>Release Year:</dt>
+  <dd><?php echo $this->album->year ?></dd>
 </dl>
 
 <p><a href="<?php echo $this->url(array('action' => 'edit')) ?>">Edit</a></p>

@@ -31,6 +31,38 @@ class AlbumsController extends Zend_Controller_Action
     }
     
     /**
+     * Returns the album's model
+     * 
+     * @return Model_Album
+     */
+    private function _getModel()
+    {
+        return new Model_Album();
+    }
+    
+    /**
+     * Creates a new Album
+     */
+    public function newAction()
+    {
+        $form = new Form_Album();
+        
+        if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
+            //creates a new album, and sets its attributes from the postData
+            //keys from the postData must match the table's column name for this to work
+            $album = $this->_getModel()->createRow($this->getRequest()->getPost());
+            
+            //saves the new artist
+            $album->save();
+            
+            //redirects back to the index action
+            $this->_helper->redirector('index');
+        }
+        
+        $this->view->form = $form;
+    }
+    
+    /**
      * Displays info on a specific album
      */
     public function showAction()
@@ -40,13 +72,47 @@ class AlbumsController extends Zend_Controller_Action
         $this->view->artist = $album->findParentRow('Model_Artist');
     }
     
-    protected function _getAlbumById($id)
+    /**
+     * Loads the album by the ID
+     * 
+     * @param integer $id
+     * @return Zend_Db_Table_Row
+     */
+    private function _getAlbumById($id)
     {
         return $this->_getModel()->fetchRow("id = $id");
     }
     
-    protected function _getModel()
+    /**
+     * Edits an album
+     */
+    public function editAction()
     {
-        return new Model_Album();
+        $album = $this->_getAlbumById($this->_getParam('id'));
+        $this->view->album = $album;
+        
+        //instantiates the artist's Form
+        $form = new Form_Album();
+        
+        //Checks if there submitted data and validates the form
+        if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
+            
+            //updates the album's attributes from the postData 
+            //keys from the postData must match the table's column name for this to work
+            $album->setFromArray($this->getRequest()->getPost());
+            
+            //saves the modifications
+            $album->save();
+            
+            //redirects to the show action
+            $this->_helper->redirector('show', 'albums', null, array('id' => $album->id));
+        }
+        
+        //fills the form input values with the album's information
+        //form input names must match the table's column name for this to work
+        $form->populate($album->toArray());
+        
+        //sends the form to the view
+        $this->view->form = $form;
     }
 }

@@ -31,6 +31,38 @@ class ArtistsController extends Zend_Controller_Action
     }
     
     /**
+     * Returns the artist's Model
+     * 
+     * @return Model_Artist
+     */
+    private function _getModel()
+    {
+        return new Model_Artist();
+    }
+    
+    /**
+     * Creates a new Artist
+     */
+    public function newAction()
+    {
+        $form = new Form_Artist();
+        
+        if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
+            //creates a new artist, and sets its attributes from the postData
+            //keys from the postData must match the table's column name for this to work
+            $artist = $this->_getModel()->createRow($this->getRequest()->getPost());
+            
+            //saves the new artist
+            $artist->save();
+            
+            //redirects back to the index action
+            $this->_helper->redirector('index');
+        }
+        
+        $this->view->form = $form;
+    }
+    
+    /**
      * Displays info on a specific artist
      */
     public function showAction()
@@ -43,6 +75,17 @@ class ArtistsController extends Zend_Controller_Action
         
         //loads and sends its albums to the view
         $this->view->albums = $artist->findDependentRowset('Model_Album');
+    }
+    
+        /**
+     * Loads the artist by the ID
+     * 
+     * @param integer $id
+     * @return Zend_Db_Table_Row
+     */
+    private function _getArtistById($id)
+    {
+        return $this->_getModel()->fetchRow("id = $id");
     }
     
     /**
@@ -76,48 +119,5 @@ class ArtistsController extends Zend_Controller_Action
         
         //sends the form to the view
         $this->view->form = $form;
-    }
-    
-    /**
-     * Creates a new Artist
-     */
-    public function newAction()
-    {
-        $form = new Form_Artist();
-        
-        if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
-            //creates a new artist, and sets its attributes from the postData
-            //keys from the postData must match the table's column name for this to work
-            $artist = $this->_getModel()->createRow($this->getRequest()->getPost());
-            
-            //saves the new artist
-            $artist->save();
-            
-            //redirects back to the index action
-            $this->_helper->redirector('index');
-        }
-        
-        $this->view->form = $form;
-    }
-    
-    /**
-     * Loads the artist by the ID
-     * 
-     * @param integer $id
-     * @return Zend_Db_Table_Row
-     */
-    private function _getArtistById($id)
-    {
-        return $this->_getModel()->fetchRow("id = $id");
-    }
-    
-    /**
-     * Returns the artist's Model
-     * 
-     * @return Model_Artist
-     */
-    private function _getModel()
-    {
-        return new Model_Artist();
     }
 }

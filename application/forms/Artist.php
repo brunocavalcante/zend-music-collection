@@ -10,6 +10,9 @@
  */
 class Form_Artist extends Zend_Form
 {
+    /**
+     * Initializes the form
+     */
     public function init()
     {
         $name = new Zend_Form_Element_Text('name');

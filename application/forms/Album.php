@@ -10,6 +10,9 @@
  */
 class Form_Album extends Zend_Form
 {
+    /**
+     * Initializes the form
+     */
     public function init()
     {
         $name = new Zend_Form_Element_Text('name');
@@ -23,10 +26,34 @@ class Form_Album extends Zend_Form
 
         $artist = new Zend_Form_Element_Select('artist_id');
         $artist->setLabel('Artist')
-               ->setRequired(true);
+               ->setRequired(true)
+               ->addMultiOptions($this->_getArtistsOptions());
         $this->addElement($artist);
 
         $submit = new Zend_Form_Element_Submit('Salvar');
         $this->addElement($submit);
+    }
+    
+    /**
+     * Returns the artists as a hash
+     * 
+     * @return array
+     */
+    protected function _getArtistsOptions()
+    {
+        // instantiates the model
+        $model = new Model_Artist();
+        
+        // creates the empty array to the filled
+        $options = array();
+        
+        // iterates over all artists, ordered by name
+        foreach ($model->fetchAll(null, 'name') as $artist) {
+          // adds the artist to the options array
+          $options[$artist->id] = $artist->name;
+        }
+        
+        // returns the options array
+        return $options;
     }
 }
