@@ -12,11 +12,20 @@
 <body>
   <header>
     <h1>Zend Music Collection</h1>
+    
+    <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+    <p id="user">
+      Welcome, <?php echo Zend_Auth::getInstance()->getIdentity() ?> | 
+      <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'logout')) ?>">Logout</a>
+    </p>
+    <?php endif ?>
   </header>
 
+  <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
   <nav>
     <?php echo $this->navigation()->menu()->setUlClass('dropdown dropdown-horizontal menu_princ'); ?>
   </nav>
+  <?php endif ?>
 
   <section>
     <p id="breadcrumbs">
@@ -34,7 +43,8 @@
   </section>
   
   <footer>
-    This could be the footer! :)
+    Zend Music Collection<br/>
+    This work is licensed under the <a href="http://www.gnu.org/licenses/gpl-2.0.html">GNU General Public License V2</a>.
   </footer>
     
   <!-- Javascripts defined on the Bootstrap -->

@@ -24,9 +24,17 @@ header {
   color: white;
   text-shadow: 1px 1px 1px #000000;
   border-bottom: 1px dotted #333333;
+  position: relative;
 }
 
 header h1 {
+  margin: 0;
+}
+
+#user {
+  position: absolute;
+  top: 2em;
+  right: 2em;
   margin: 0;
 }
 
@@ -45,10 +53,13 @@ nav li {
   display: inline;
 }
 
-nav a, nav a:visited {
+nav a, nav a:visited, header a, header a:visited {
   color: white;
   margin-right: 2em;
-  border: none;
+}
+
+nav a:hover, header a:hover {
+  border-bottom: 1px dotted white;
 }
 
 section {
@@ -56,9 +67,16 @@ section {
 }
 
 footer {
-  color: #999999;
   padding: 1em 2em;
   border-top: 1px dotted #CCCCCC;
+}
+
+footer, footer a, footer a:visited {
+  color: #999999;
+}
+
+footer a, footer a:visited {
+  border-bottom: 1px dotted #999999;
 }
 
 table {
@@ -83,6 +101,10 @@ table tbody td {
 
 table tbody tr:nth-child(odd) {
   background: #F9F9F9;
+}
+
+table tfoot {
+  color: #999999;
 }
 
 dt {

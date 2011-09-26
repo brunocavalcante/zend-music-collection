@@ -64,6 +64,12 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->doctype(Zend_View_Helper_Doctype::HTML5);
     }
     
+    protected function _initPlugins()
+    {
+        $front = Zend_Controller_Front::getInstance();
+        $front->registerPlugin(new Plugin_Auth());
+    }
+    
     protected function _initNavigation()
     {
         $this->_getView()->navigation($this->_getNavigation());
