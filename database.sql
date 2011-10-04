@@ -2,7 +2,7 @@ CREATE TABLE albums (
     id serial NOT NULL,
     name character varying NOT NULL,
     year integer, 
-    artist_id integer NOT NULL, 
+    artist_id integer NOT NULL
 );
 
 CREATE TABLE artists (
