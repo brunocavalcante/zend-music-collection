@@ -14,18 +14,27 @@ class AuthController extends Zend_Controller_Action
         $this->view->form = new Form_Login();
         
         if ($this->getRequest()->isPost() && $this->view->form->isValid($_POST)) {
-            $db = Zend_Db_Table::getDefaultAdapter();
-            $authAdapter = new Zend_Auth_Adapter_DbTable($db, 'users', 'username', 'password', 'MD5(?)');
-            $authAdapter->setIdentity($this->_getParam('username'))
-                        ->setCredential($this->_getParam('password'));
-            
-            $authReturn = Zend_Auth::getInstance()->authenticate($authAdapter);
-            
-            if (!$authReturn->isValid()) {
-              throw new Exception(implode(', ', $authReturn->getMessages()));
+            try {
+                $this->_doAuthenticate($this->_getParam('username'), $this->_getParam('password'));
+                $this->_helper->redirector('index', 'artists');
+            } catch(Exception $e) {
+                $this->view->messages = array($e->getMessage());
             }
-            
-            $this->_helper->redirector('index', 'artists');    
+        }
+    }
+    
+    protected function _doAuthenticate($username, $password)
+    {
+        $db = Zend_Db_Table::getDefaultAdapter();
+        
+        $authAdapter = new Zend_Auth_Adapter_DbTable($db, 'users', 'username', 'password', 'MD5(?)');
+        $authAdapter->setIdentity($username)
+                    ->setCredential($password);
+        
+        $authReturn = Zend_Auth::getInstance()->authenticate($authAdapter);
+        
+        if (!$authReturn->isValid()) {
+           throw new Exception(implode(', ', $authReturn->getMessages()));
         }
     }
     

@@ -48,15 +48,22 @@ class AlbumsController extends Zend_Controller_Action
         $form = new Form_Album();
         
         if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
-            //creates a new album, and sets its attributes from the postData
-            //keys from the postData must match the table's column name for this to work
-            $album = $this->_getModel()->createRow($this->getRequest()->getPost());
-            
-            //saves the new artist
-            $album->save();
-            
-            //redirects back to the index action
-            $this->_helper->redirector('index');
+            try {
+                //creates a new album, and sets its attributes from the postData
+                //keys from the postData must match the table's column name for this to work
+                $album = $this->_getModel()->createRow($this->getRequest()->getPost());
+                
+                //saves the new artist
+                $album->save();
+                
+                //Status message
+                $this->_helper->flashMessenger('Album successfully created.');
+                
+                //redirects back to the index action
+                $this->_helper->redirector('index');
+            } catch (Exception $e) {
+                $this->view->messages = array($e->getMessage());
+            }
         }
         
         $this->view->form = $form;
@@ -96,16 +103,22 @@ class AlbumsController extends Zend_Controller_Action
         
         //Checks if there submitted data and validates the form
         if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
-            
-            //updates the album's attributes from the postData 
-            //keys from the postData must match the table's column name for this to work
-            $album->setFromArray($this->getRequest()->getPost());
-            
-            //saves the modifications
-            $album->save();
-            
-            //redirects to the show action
-            $this->_helper->redirector('show', 'albums', null, array('id' => $album->id));
+            try {
+                //updates the album's attributes from the postData 
+                //keys from the postData must match the table's column name for this to work
+                $album->setFromArray($this->getRequest()->getPost());
+                
+                //saves the modifications
+                $album->save();
+                
+                //Status message
+                $this->_helper->flashMessenger('Album successfully updated.');
+                
+                //redirects to the show action
+                $this->_helper->redirector('show', 'albums', null, array('id' => $album->id));
+            } catch (Exception $e) {
+                $this->view->messages = array($e->getMessage());
+            }
         }
         
         //fills the form input values with the album's information

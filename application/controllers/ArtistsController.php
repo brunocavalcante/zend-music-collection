@@ -48,15 +48,22 @@ class ArtistsController extends Zend_Controller_Action
         $form = new Form_Artist();
         
         if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
-            //creates a new artist, and sets its attributes from the postData
-            //keys from the postData must match the table's column name for this to work
-            $artist = $this->_getModel()->createRow($this->getRequest()->getPost());
-            
-            //saves the new artist
-            $artist->save();
-            
-            //redirects back to the index action
-            $this->_helper->redirector('index');
+            try {
+                //creates a new artist, and sets its attributes from the postData
+                //keys from the postData must match the table's column name for this to work
+                $artist = $this->_getModel()->createRow($this->getRequest()->getPost());
+                
+                //saves the new artist
+                $artist->save();
+                
+                //Status message
+                $this->_helper->flashMessenger('Artist successfully created.');
+                
+                //redirects back to the index action
+                $this->_helper->redirector('index');
+            }  catch (Exception $e) {
+                $this->view->messages = array($e->getMessage());
+            }
         }
         
         $this->view->form = $form;
@@ -101,16 +108,22 @@ class ArtistsController extends Zend_Controller_Action
         
         //Checks if there submitted data and validates the form
         if ($this->getRequest()->isPost() AND $form->isValid($_POST)) {
-            
-            //updates the artist's attributes from the postData 
-            //keys from the postData must match the table's column name for this to work
-            $artist->setFromArray($this->getRequest()->getPost());
-            
-            //saves the modifications
-            $artist->save();
-            
-            //redirects to the show action
-            $this->_helper->redirector('show', 'artists', null, array('id' => $artist->id));
+            try {
+                //updates the artist's attributes from the postData 
+                //keys from the postData must match the table's column name for this to work
+                $artist->setFromArray($this->getRequest()->getPost());
+                
+                //saves the modifications
+                $artist->save();
+                
+                //Status message
+                $this->_helper->flashMessenger('Artist successfully updated.');
+                
+                //redirects to the show action
+                $this->_helper->redirector('show', 'artists', null, array('id' => $artist->id));
+            } catch (Exception $e) {
+                $this->view->messages = array($e->getMessage());
+            }
         }
         
         //fills the form input values with the artist's information

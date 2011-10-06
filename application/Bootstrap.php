@@ -64,19 +64,27 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
         $view->doctype(Zend_View_Helper_Doctype::HTML5);
     }
     
+    /**
+     * Initializes the Controller Plugins
+     */
     protected function _initPlugins()
     {
         $front = Zend_Controller_Front::getInstance();
+        
         $front->registerPlugin(new Plugin_Auth());
+        $front->registerPlugin(new Plugin_FlashMessenger());
     }
     
+    /**
+     * Initializes the application's navigation structure
+     */
     protected function _initNavigation()
     {
         $this->_getView()->navigation($this->_getNavigation());
     }
     
     /**
-     * Returns the Zend_Navigation object that describes the sitemap
+     * Returns the Zend_Navigation object that describes the application's navigation structure
      * 
      * With the Zend_Navigation object, we can now use the navigation() view helpers, such as menu and breadcrumbs
      * 
