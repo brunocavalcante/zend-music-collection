@@ -15,6 +15,7 @@ class Plugin_FlashMessenger extends Zend_Controller_Plugin_Abstract
      * 
      * We will "intercept" the requests and add the flashMessenger messages to the view object.
      * 
+     * @link http://framework.zend.com/manual/en/zend.controller.action.html#zend.controller.action.prepostdispatch
      * @param Zend_Controller_Request_Abstract $request
      */
     public function postDispatch(Zend_Controller_Request_Abstract $request)
