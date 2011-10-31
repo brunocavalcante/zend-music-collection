@@ -14,6 +14,7 @@
     <h1>Zend Music Collection</h1>
     
     <?php if (Zend_Auth::getInstance()->hasIdentity()): ?>
+    <!-- This section is only displayed if the user is logged in -->
     <p id="user">
       Welcome, <?php echo Zend_Auth::getInstance()->getIdentity() ?> | 
       <a href="<?php echo $this->url(array('controller' => 'auth', 'action' => 'logout')) ?>">Logout</a>
@@ -29,7 +30,7 @@
 
   <section>
     <p id="breadcrumbs">
-        <?php echo $this->navigation()->breadcrumbs()->setRenderInvisible(true)->setSeparator(" &raquo; ") ?>
+    		<?php echo $this->navigation()->breadcrumbs()->setRenderInvisible(true)->setSeparator(" &raquo; ") ?>
     </p>
     
     <?php if (isset($this->messages) && count($this->messages) > 0): foreach ($this->messages as $message): ?>
@@ -38,7 +39,6 @@
     <?php endforeach; endif; ?>
       
     <!-- View Content -->
-      
     <?php echo $this->layout()->content ?>
   </section>
   

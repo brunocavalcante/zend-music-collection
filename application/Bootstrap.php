@@ -69,8 +69,10 @@ class Bootstrap extends Zend_Application_Bootstrap_Bootstrap
      */
     protected function _initPlugins()
     {
+    	  // We're getting the Front Controller here
         $front = Zend_Controller_Front::getInstance();
         
+				// The plugins need to be registered with the Front Controller - or else they'll just be ignored
         $front->registerPlugin(new Plugin_Auth());
         $front->registerPlugin(new Plugin_FlashMessenger());
     }
